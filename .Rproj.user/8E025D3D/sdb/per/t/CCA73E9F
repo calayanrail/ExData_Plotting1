@@ -1,0 +1,17 @@
+{
+    "contents" : "if(!exists(\"data1\")){\n        temp<-read.csv(\"household_power_consumption.txt\",sep=\";\",na.strings=\"?\",\n                       nrows=10)\n        classes<-sapply(temp,class)\n        data<-read.csv(\"household_power_consumption.txt\",sep=\";\",na.strings=\"?\",\n                       colClasses=classes)\n        \n        data1<-subset(data,data$Date==\"1/2/2007\"|data$Date==\"2/2/2007\")\n        \n        time<-paste(data1$Date,data1$Time)\n        time<-strptime(time,format=\"%d/%m/%Y %H:%M:%S\")\n        data1$Time<-time\n}\n\npng(\"plot1.png\",480,480)\n\npar(bg=\"transparent\")\n\nhist(data1$Global_active_power,col=\"red\",\n     xlab=\"Global Active Power (kilowatts)\", ylab=\"Frequency\",\n     main=\"Global Active Power\")\n\ndev.off()",
+    "created" : 1399799751389.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "232501537",
+    "id" : "CCA73E9F",
+    "lastKnownWriteTime" : 1399800856,
+    "path" : "~/Assignment/exdata/ExData_Plotting1/plot1.R",
+    "project_path" : "plot1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "if(!exists(\"data1\")){\n        temp<-read.csv(\"household_power_consumption.txt\",sep=\";\",na.strings=\"?\",\n                       nrows=10)\n        classes<-sapply(temp,class)\n        data<-read.csv(\"household_power_consumption.txt\",sep=\";\",na.strings=\"?\",\n                       colClasses=classes)\n        \n        data1<-subset(data,data$Date==\"1/2/2007\"|data$Date==\"2/2/2007\")\n        \n        time<-paste(data1$Date,data1$Time)\n        time<-strptime(time,format=\"%d/%m/%Y %H:%M:%S\")\n        data1$Time<-time\n}\n\npng(\"plot4.png\",480,480)\n\npar(bg=\"transparent\")\n\npar(mfrow=c(2,2))\n        with(data1,plot(time,Global_active_power,type=\"l\",\n                        xlab=\"\",ylab=\"Global Active Power\"))\n        \n        with(data1,plot(time,Voltage,type=\"l\",\n                        xlab=\"datetime\",ylab=\"Voltage\"))\n        \n        with(data1,plot(time,Sub_metering_1,type=\"l\",\n                        xlab=\"\",ylab=\"Energy sub metering\"))\n                with(data1,points(time,Sub_metering_2,type=\"l\",col=\"red\"))\n                with(data1,points(time,Sub_metering_3,type=\"l\",col=\"blue\"))\n                legend(\"topright\",lty=1,col=c(\"black\",\"red\",\"blue\"),\n                       legend=c(\"Sub_metering_1\",\"Sub_metering_2\",\"Sub_metering_3\")\n                       ,cex=0.9, bty = \"n\")\n        \n        with(data1,plot(time,Global_reactive_power,type=\"l\",\n                        xlab=\"datetime\",ylab=\"Global_reactive_power\"))\ndev.off()",
+    "created" : 1399794876801.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1156955784",
+    "id" : "2F22180C",
+    "lastKnownWriteTime" : 1399801177,
+    "path" : "~/Assignment/exdata/ExData_Plotting1/plot4.R",
+    "project_path" : "plot4.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
